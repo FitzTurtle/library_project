@@ -73,6 +73,11 @@ function appendNewBook(book) {
     displayBook.querySelector(".remove").addEventListener("click", (e) => {
         removeBook(e.target.parentElement.parentElement.getAttribute("data-index"));
     });
+
+    displayBook.querySelector(".changeRead").addEventListener("click", (e) => {
+        var parent = e.target.parentElement.parentElement;
+        toggleRead(parent, parent.getAttribute('data-index'));
+    });
     
     shelf.appendChild(displayBook);
     updateIndex();
@@ -83,6 +88,8 @@ function displayBooks(){
         appendNewBook(book);
     }
 }
+
+
 
 function removeBook(index){
     myLibrary.splice(index,1);
@@ -97,6 +104,12 @@ function updateIndex(){
     for(const card of cards) {
         card.setAttribute("data-index",cards.indexOf(card));
     }
+}
+
+function toggleRead(parent, index){
+    myLibrary[index].read = !myLibrary[index].read;
+    parent.querySelector(".read").textContent = myLibrary[index].read;
+    console.log(myLibrary[index].read);
 }
 
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295,false);
