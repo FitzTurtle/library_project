@@ -6,6 +6,7 @@ const closeAddBook = document.querySelector("dialog button");
 const addBookForm = document.querySelector("#addBook");
 const submitBook = document.querySelector("#submitNewBook");
 
+
 showAddBook.addEventListener("click", ()=> {
     addBookDialog.showModal();
 });
@@ -13,6 +14,7 @@ showAddBook.addEventListener("click", ()=> {
 closeAddBook.addEventListener("click", () => {
     addBookDialog.close();
 });
+
 
 
 //On submission, retrieves the value from each field and stores it in a new book object
@@ -55,8 +57,9 @@ function appendNewBook(book) {
         <h3 class="title"></h3>
         <h4 class="author"></h4>
         <div class="pages"></div>
-        <div class="read"></div>`;
-    
+        <div class="read"></div>
+        <div class="remove" onclick="removeBook(this.parentElement.getAttribute('data-index'))">Trashcan</div>`;
+    //Note to self: could potentially just add event listener here?
     //Keeps code from being injected from input
     displayBook.querySelector(".title").textContent = book.title;
     displayBook.querySelector(".author").textContent = book.author;

@@ -19,3 +19,7 @@ body {
     border-left: 10px outset #852222;
     box-shadow: 
 }
+
+.remove:hover {
+    background-color: orange;
+}
