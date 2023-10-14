@@ -1,5 +1,29 @@
 const myLibrary  = [];
 const shelf = document.getElementById("shelf");
+const addBookDialog = document.querySelector("#addBookDialog");
+const showAddBook = document.querySelector("#addNewBook");
+const closeAddBook = document.querySelector("dialog button");
+const submitBook = document.querySelector("#submitNewBook");
+
+showAddBook.addEventListener("click", ()=> {
+    addBookDialog.showModal();
+});
+
+closeAddBook.addEventListener("click", () => {
+    addBookDialog.close();
+});
+
+submitBook.addEventListener("click", (event)=>{
+    event.preventDefault();
+    var newTitle = document.querySelector("#title").value;
+    var newAuthor = document.querySelector("#author").value;
+    var newPages = document.querySelector("#pages").value;
+    var isRead = true;
+    myLibrary.push(new Book(newTitle, newAuthor, newPages, isRead));
+    displayBooks();
+    addBookDialog.close();
+})
+
 
 function Book(title, author, pages, read) {
 	this.title = title;

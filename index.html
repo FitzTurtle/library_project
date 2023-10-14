@@ -8,6 +8,32 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="header">
+        <dialog id="addBookDialog">
+            <button autofocus>Close</button>
+            <form id="addBook">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author">
+                <label for="pages"># of Pages</label>
+                <input type="text" id="pages" name="pages">
+                <fieldset>
+                    <div>
+                        <input type="radio" id="haveRead" name="read" value="true">
+                        <label for="haveRead">I have read it</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="notRead" name="read" value="false">
+                        <label for="notRead">I have not read it yet</label>
+                    </div>
+                </fieldset>
+                <button id="submitNewBook">Add new book</button>
+            </form>
+            
+        </dialog>
+        <button id="addNewBook">Add new book?</button>
+    </div>
     <div id="shelf">
 
     </div>
