@@ -22,7 +22,11 @@ function displayBooks(){
         console.log(book.info());
         var displayBook = document.createElement("div");
         displayBook.setAttribute("class","bookCard");
-        displayBook.innerHTML = book.title;
+        displayBook.innerHTML = `
+            <h3 class="title">${book.title}</h3>
+            <h4 class="author">${book.author}</h4>
+            <div class="pages">${book.pages}</div>
+            <div class="read"></div>`;
         shelf.appendChild(displayBook);
     }
 
