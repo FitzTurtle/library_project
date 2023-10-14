@@ -3,6 +3,7 @@ const shelf = document.getElementById("shelf");
 const addBookDialog = document.querySelector("#addBookDialog");
 const showAddBook = document.querySelector("#addNewBook");
 const closeAddBook = document.querySelector("dialog button");
+const addBookForm = document.querySelector("#addBook");
 const submitBook = document.querySelector("#submitNewBook");
 
 showAddBook.addEventListener("click", ()=> {
@@ -15,13 +16,15 @@ closeAddBook.addEventListener("click", () => {
 
 submitBook.addEventListener("click", (event)=>{
     event.preventDefault();
-    var newTitle = document.querySelector("#title").value;
-    var newAuthor = document.querySelector("#author").value;
-    var newPages = document.querySelector("#pages").value;
-    var isRead = true;
+    const newTitle = document.querySelector("#title").value;
+    const newAuthor = document.querySelector("#author").value;
+    const newPages = document.querySelector("#pages").value;
+    const isRead = document.querySelector('input[name="isRead"]:checked').value;
     const newBook = new Book(newTitle, newAuthor, newPages, isRead);
     myLibrary.push(newBook);
     appendNewBook(newBook);
+
+    addBookForm.reset();
     addBookDialog.close();
 });
 
@@ -46,24 +49,21 @@ function appendNewBook(book) {
     var displayBook = document.createElement("div");
     displayBook.setAttribute("class","bookCard");
     displayBook.innerHTML = `
-        <h3 class="title">${book.title}</h3>
-        <h4 class="author">${book.author}</h4>
-        <div class="pages">${book.pages}</div>
+        <h3 class="title"></h3>
+        <h4 class="author"></h4>
+        <div class="pages"></div>
         <div class="read"></div>`;
+    
+    displayBook.querySelector(".title").textContent = book.title;
+    displayBook.querySelector(".author").textContent = book.author;
+    displayBook.querySelector(".pages").textContent = book.pages;
+    displayBook.querySelector(".read").textContent = book.read;
     shelf.appendChild(displayBook);
 }
 
 function displayBooks(){
     for(const book of myLibrary) {
-        console.log(book.info());
-        var displayBook = document.createElement("div");
-        displayBook.setAttribute("class","bookCard");
-        displayBook.innerHTML = `
-            <h3 class="title">${book.title}</h3>
-            <h4 class="author">${book.author}</h4>
-            <div class="pages">${book.pages}</div>
-            <div class="read"></div>`;
-        shelf.appendChild(displayBook);
+        appendNewBook(book);
     }
 }
 
