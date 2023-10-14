@@ -54,17 +54,26 @@ function appendNewBook(book) {
     displayBook.setAttribute("class","bookCard");
     // displayBook.setAttribute("data-index",myLibrary.indexOf(book));
     displayBook.innerHTML = `
-        <h3 class="title"></h3>
+        <h3 class="title"></h3>hobbi
         <h4 class="author"></h4>
         <div class="pages"></div>
         <div class="read"></div>
-        <div class="remove" onclick="removeBook(this.parentElement.getAttribute('data-index'))">Trashcan</div>`;
+        <div class="cardButtons">
+        <div class="remove">Trashcan</div>
+        <div class="changeRead">Toggle Read</div>
+        </div>
+        `;
     //Note to self: could potentially just add event listener here?
     //Keeps code from being injected from input
     displayBook.querySelector(".title").textContent = book.title;
     displayBook.querySelector(".author").textContent = book.author;
     displayBook.querySelector(".pages").textContent = book.pages;
     displayBook.querySelector(".read").textContent = book.read;
+
+    displayBook.querySelector(".remove").addEventListener("click", (e) => {
+        removeBook(e.target.parentElement.parentElement.getAttribute("data-index"));
+    });
+    
     shelf.appendChild(displayBook);
     updateIndex();
 }
