@@ -19,10 +19,11 @@ submitBook.addEventListener("click", (event)=>{
     var newAuthor = document.querySelector("#author").value;
     var newPages = document.querySelector("#pages").value;
     var isRead = true;
-    myLibrary.push(new Book(newTitle, newAuthor, newPages, isRead));
-    displayBooks();
+    const newBook = new Book(newTitle, newAuthor, newPages, isRead);
+    myLibrary.push(newBook);
+    appendNewBook(newBook);
     addBookDialog.close();
-})
+});
 
 
 function Book(title, author, pages, read) {
@@ -39,6 +40,17 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
+}
+
+function appendNewBook(book) {
+    var displayBook = document.createElement("div");
+    displayBook.setAttribute("class","bookCard");
+    displayBook.innerHTML = `
+        <h3 class="title">${book.title}</h3>
+        <h4 class="author">${book.author}</h4>
+        <div class="pages">${book.pages}</div>
+        <div class="read"></div>`;
+    shelf.appendChild(displayBook);
 }
 
 function displayBooks(){
