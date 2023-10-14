@@ -54,7 +54,7 @@ function appendNewBook(book) {
     displayBook.setAttribute("class","bookCard");
     // displayBook.setAttribute("data-index",myLibrary.indexOf(book));
     displayBook.innerHTML = `
-        <h3 class="title"></h3>hobbi
+        <h3 class="title"></h3>
         <h4 class="author"></h4>
         <div class="pages"></div>
         <div class="read"></div>
@@ -76,7 +76,7 @@ function appendNewBook(book) {
 
     displayBook.querySelector(".changeRead").addEventListener("click", (e) => {
         var parentIndex = e.target.parentElement.parentElement.getAttribute('data-index');
-        myLibrary[parentIndex].toggleRead();
+        myLibrary[parentIndex].toggleRead(parentIndex);
     });
     
     shelf.appendChild(displayBook);
@@ -107,10 +107,12 @@ function updateIndex(){
 }
 
 
- Book.prototype.toggleRead = function(){
+ Book.prototype.toggleRead = function(parentIndex){
     console.log("Before:"+this.read+" Book: "+this.title);
     this.read = !this.read;
     console.log("after:"+this.read);
+
+    document.querySelector(`[data-index='${parentIndex}'] .read`).textContent = this.read; 
 }
 
 // function toggleRead(parent, index){
