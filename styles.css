@@ -1,0 +1,16 @@
+body {
+    background-color: red;
+}
+
+#shelf {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+    gap: 5px;
+}
+
+.bookCard {
+    background-color: brown;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
