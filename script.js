@@ -14,6 +14,8 @@ closeAddBook.addEventListener("click", () => {
     addBookDialog.close();
 });
 
+
+//On submission, retrieves the value from each field and stores it in a new book object
 submitBook.addEventListener("click", (event)=>{
     event.preventDefault();
     const newTitle = document.querySelector("#title").value;
@@ -28,7 +30,7 @@ submitBook.addEventListener("click", (event)=>{
     addBookDialog.close();
 });
 
-
+//Constructor for books
 function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
@@ -48,22 +50,40 @@ function addBookToLibrary(book) {
 function appendNewBook(book) {
     var displayBook = document.createElement("div");
     displayBook.setAttribute("class","bookCard");
+    // displayBook.setAttribute("data-index",myLibrary.indexOf(book));
     displayBook.innerHTML = `
         <h3 class="title"></h3>
         <h4 class="author"></h4>
         <div class="pages"></div>
         <div class="read"></div>`;
     
+    //Keeps code from being injected from input
     displayBook.querySelector(".title").textContent = book.title;
     displayBook.querySelector(".author").textContent = book.author;
     displayBook.querySelector(".pages").textContent = book.pages;
     displayBook.querySelector(".read").textContent = book.read;
     shelf.appendChild(displayBook);
+    updateIndex();
 }
 
 function displayBooks(){
     for(const book of myLibrary) {
         appendNewBook(book);
+    }
+}
+
+function removeBook(index){
+    myLibrary.splice(index,1);
+    document.querySelector(`div[data-index="${index}"]`).remove();
+    updateIndex();
+}
+
+function updateIndex(){
+
+    const cards = Array.from(document.querySelectorAll(".bookCard"));
+
+    for(const card of cards) {
+        card.setAttribute("data-index",cards.indexOf(card));
     }
 }
 
