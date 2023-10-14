@@ -29,8 +29,6 @@ function displayBooks(){
             <div class="read"></div>`;
         shelf.appendChild(displayBook);
     }
-
-
 }
 
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295,false);
