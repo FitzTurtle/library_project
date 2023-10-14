@@ -75,8 +75,8 @@ function appendNewBook(book) {
     });
 
     displayBook.querySelector(".changeRead").addEventListener("click", (e) => {
-        var parent = e.target.parentElement.parentElement;
-        toggleRead(parent, parent.getAttribute('data-index'));
+        var parentIndex = e.target.parentElement.parentElement.getAttribute('data-index');
+        myLibrary[parentIndex].toggleRead();
     });
     
     shelf.appendChild(displayBook);
@@ -106,11 +106,18 @@ function updateIndex(){
     }
 }
 
-function toggleRead(parent, index){
-    myLibrary[index].read = !myLibrary[index].read;
-    parent.querySelector(".read").textContent = myLibrary[index].read;
-    console.log(myLibrary[index].read);
+
+ Book.prototype.toggleRead = function(){
+    console.log("Before:"+this.read+" Book: "+this.title);
+    this.read = !this.read;
+    console.log("after:"+this.read);
 }
+
+// function toggleRead(parent, index){
+//     myLibrary[index].read = !myLibrary[index].read;
+//     parent.querySelector(".read").textContent = myLibrary[index].read;
+//     console.log(myLibrary[index].read);
+// }
 
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295,false);
 const assassins = new Book("Assassin's Apprentice", "Robert Jordan", 700, true);
