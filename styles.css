@@ -2,6 +2,7 @@
 
     --headerColor: #d3d3d3;
     --shelfColor: #ffffff;
+    --bookWritingColor: #ffffff;
 }
 
 @font-face {
@@ -59,6 +60,7 @@ body {
 }
 
 .bookCard {
+    text-align: center;
     background-color: brown;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -73,6 +75,8 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+
+    color: var(--bookWritingColor)
 }
 
 .cardButtons {
@@ -81,7 +85,16 @@ body {
     justify-content: space-between;
 }
 
+/* This is needed so that clicking the svg path is ignored 
+and the eventListener will trigger properly. */
+.cardButtons svg path {
+    pointer-events: none;
+}
 
 .remove:hover {
-    background-color: orange;
+    fill: red;
+}
+
+.changeRead:hover {
+    fill: white;
 }

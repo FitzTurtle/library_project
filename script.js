@@ -60,16 +60,16 @@ function appendNewBook(book) {
         <div class="pages"></div>
         <div class="read"></div>
         <div class="cardButtons">
-        <div class="remove"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></div>
-        <div class="changeRead"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm90-233 200-39v-478l-200 39v478Zm-80 16v-478l-15 3q-11 2-18 9.5t-7 18.5v457q5-2 10.5-3.5T261-293l19-4Zm-40-472v482-482Z"/></svg></div>
+        <svg class="remove" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+        <svg class="changeRead" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm90-233 200-39v-478l-200 39v478Zm-80 16v-478l-15 3q-11 2-18 9.5t-7 18.5v457q5-2 10.5-3.5T261-293l19-4Zm-40-472v482-482Z"/></svg>
         </div>
         `;
     //Note to self: could potentially just add event listener here?
     //Keeps code from being injected from input
     displayBook.querySelector(".title").textContent = book.title;
-    displayBook.querySelector(".author").textContent = book.author;
-    displayBook.querySelector(".pages").textContent = book.pages;
-    displayBook.querySelector(".read").textContent = book.read;
+    displayBook.querySelector(".author").textContent ="by "+book.author;
+    displayBook.querySelector(".pages").textContent = "pages: "+book.pages;
+    displayBook.querySelector(".read").textContent = "read: "+book.read;
 
     displayBook.querySelector(".remove").addEventListener("click", (e) => {
         removeBook(e.target.parentElement.parentElement.getAttribute("data-index"));
@@ -116,7 +116,7 @@ function updateIndex(){
     this.read = !this.read;
     console.log("after:"+this.read);
 
-    document.querySelector(`[data-index='${parentIndex}'] .read`).textContent = this.read; 
+    document.querySelector(`[data-index='${parentIndex}'] .read`).textContent ="read: "+this.read; 
 }
 
 // function toggleRead(parent, index){
