@@ -129,12 +129,6 @@ function updateIndex(){
     ;
 }
 
-// function toggleRead(parent, index){
-//     myLibrary[index].read = !myLibrary[index].read;
-//     parent.querySelector(".read").textContent = myLibrary[index].read;
-//     console.log(myLibrary[index].read);
-// }
-
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295,false);
 const assassins = new Book("Assassin's Apprentice", "Robert Jordan", 700, true);
 const assassin2 = new Book("Assassin's Quest", "Robert Jordan", 700, true);
