@@ -70,7 +70,8 @@ function appendNewBook(book) {
     displayBook.querySelector(".author").textContent ="by "+book.author;
     displayBook.querySelector(".pages").textContent = "pages: "+book.pages;
     displayBook.querySelector(".read").textContent = "read: "+book.read;
-    console.log(displayBook.querySelector(".changeRead"));
+
+
     //Changes svg path based on read or not.
     displayBook.querySelector(".changeRead").innerHTML = book.read ?
     '<path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm90-233 200-39v-478l-200 39v478Zm-80 16v-478l-15 3q-11 2-18 9.5t-7 18.5v457q5-2 10.5-3.5T261-293l19-4Zm-40-472v482-482Z"/>':
@@ -119,9 +120,7 @@ function updateIndex(){
 
  Book.prototype.toggleRead = function(parentIndex){
 
-    console.log("Before:"+this.read+" Book: "+this.title);
     this.read = !this.read;
-    console.log("after:"+this.read);
 
     document.querySelector(`[data-index='${parentIndex}'] .read`).textContent ="read: "+this.read; 
     document.querySelector(`[data-index='${parentIndex}'] .changeRead`).innerHTML = this.read ?
