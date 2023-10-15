@@ -49,6 +49,7 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+//Function handles creation of the new book card and inserts it into the dom.
 function appendNewBook(book) {
     var displayBook = document.createElement("div");
     displayBook.setAttribute("class","bookCard");
@@ -84,6 +85,7 @@ function appendNewBook(book) {
     shelf.appendChild(showAddBook);
     updateIndex();
 }
+
 
 function displayBooks(){
     for(const book of myLibrary) {
