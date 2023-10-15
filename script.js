@@ -79,7 +79,9 @@ function appendNewBook(book) {
         myLibrary[parentIndex].toggleRead(parentIndex);
     });
     
+
     shelf.appendChild(displayBook);
+    shelf.appendChild(showAddBook);
     updateIndex();
 }
 
