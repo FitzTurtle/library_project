@@ -61,15 +61,21 @@ function appendNewBook(book) {
         <div class="read"></div>
         <div class="cardButtons">
         <svg class="remove" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
-        <svg class="changeRead" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm90-233 200-39v-478l-200 39v478Zm-80 16v-478l-15 3q-11 2-18 9.5t-7 18.5v457q5-2 10.5-3.5T261-293l19-4Zm-40-472v482-482Z"/></svg>
+        <svg class="changeRead" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"></svg>
         </div>
         `;
-    //Note to self: could potentially just add event listener here?
+
     //Keeps code from being injected from input
     displayBook.querySelector(".title").textContent = book.title;
     displayBook.querySelector(".author").textContent ="by "+book.author;
     displayBook.querySelector(".pages").textContent = "pages: "+book.pages;
     displayBook.querySelector(".read").textContent = "read: "+book.read;
+    console.log(displayBook.querySelector(".changeRead"));
+    //Changes svg path based on read or not.
+    displayBook.querySelector(".changeRead").innerHTML = book.read ?
+    '<path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm90-233 200-39v-478l-200 39v478Zm-80 16v-478l-15 3q-11 2-18 9.5t-7 18.5v457q5-2 10.5-3.5T261-293l19-4Zm-40-472v482-482Z"/>':
+    '<path d="M300-80q-58 0-99-41t-41-99v-520q0-58 41-99t99-41h500v600q-25 0-42.5 17.5T740-220q0 25 17.5 42.5T800-160v80H300Zm-60-267q14-7 29-10t31-3h20v-440h-20q-25 0-42.5 17.5T240-740v393Zm160-13h320v-440H400v440Zm-160 13v-453 453Zm60 187h373q-6-14-9.5-28.5T660-220q0-16 3-31t10-29H300q-26 0-43 17.5T240-220q0 26 17 43t43 17Z"/>'
+    ;
 
     displayBook.querySelector(".remove").addEventListener("click", (e) => {
         removeBook(e.target.parentElement.parentElement.getAttribute("data-index"));
@@ -112,11 +118,16 @@ function updateIndex(){
 
 
  Book.prototype.toggleRead = function(parentIndex){
+
     console.log("Before:"+this.read+" Book: "+this.title);
     this.read = !this.read;
     console.log("after:"+this.read);
 
     document.querySelector(`[data-index='${parentIndex}'] .read`).textContent ="read: "+this.read; 
+    document.querySelector(`[data-index='${parentIndex}'] .changeRead`).innerHTML = this.read ?
+    '<path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm90-233 200-39v-478l-200 39v478Zm-80 16v-478l-15 3q-11 2-18 9.5t-7 18.5v457q5-2 10.5-3.5T261-293l19-4Zm-40-472v482-482Z"/>':
+    '<path d="M300-80q-58 0-99-41t-41-99v-520q0-58 41-99t99-41h500v600q-25 0-42.5 17.5T740-220q0 25 17.5 42.5T800-160v80H300Zm-60-267q14-7 29-10t31-3h20v-440h-20q-25 0-42.5 17.5T240-740v393Zm160-13h320v-440H400v440Zm-160 13v-453 453Zm60 187h373q-6-14-9.5-28.5T660-220q0-16 3-31t10-29H300q-26 0-43 17.5T240-220q0 26 17 43t43 17Z"/>'
+    ;
 }
 
 // function toggleRead(parent, index){
