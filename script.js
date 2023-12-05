@@ -32,17 +32,26 @@ submitBook.addEventListener("click", (event)=>{
     addBookDialog.close();
 });
 
-//Constructor for books
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-
-	this.info =  function() {
-		return title+" by "+author+", "+pages+" pages, " + (read ? "has already read" : "has not read yet");
-	}
+class Book { 
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
+
+//Constructor for books
+// function Book(title, author, pages, read) {
+// 	this.title = title;
+// 	this.author = author;
+// 	this.pages = pages;
+// 	this.read = read;
+
+// 	this.info =  function() {
+// 		return title+" by "+author+", "+pages+" pages, " + (read ? "has already read" : "has not read yet");
+// 	}
+// }
 
 
 function addBookToLibrary(book) {
